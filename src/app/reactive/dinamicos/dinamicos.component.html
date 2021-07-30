@@ -1,1 +1,59 @@
-<p>dinamicos works!</p>
+<h2>Reactive: <small>Dinámicos</small></h2>
+<hr>
+
+<form (ngSubmit)="guardar()" [formGroup]="miFormulario" autocomplete="off">
+    <!-- Nombre -->
+    <div class="mb-3 row">
+        <label class="col-sm-3 col-form-label">Nombre</label>
+        <div class="col-sm-9">
+            <input class="form-control" placeholder="Nombre de la persona" formControlName="nombre">
+            <span *ngIf="comprobarCampo('nombre')" class="form-text text-danger">Este campo es obligatorio y necesita mínimo 3 letras</span>
+        </div>
+    </div>
+
+
+    <!-- Agregar favorito -->
+    <div class="mb-3 row">
+        <label class="col-sm-3 col-form-label">Agregar</label>
+        <div class="col-sm-9">
+            <div class="input-group">
+                <input class="form-control" placeholder="Agregar Favorito" (keyup.enter)="agregarFavorito()" [formControl]="nuevoFavorito">
+                <button class="btn btn-outline-primary" type="button" (click)="agregarFavorito()" >Agregar</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Lista de juegos favoritos -->
+    <div class="mb-3 row">
+        <label class="col-sm-3 col-form-label">Favoritos</label>
+        <div class="col-sm-9" formArrayName="favoritos">
+            <div  *ngFor="let fav of favoritosArr.controls; let i= index"class="input-group mb-1">
+                <input class="form-control" [formControlName]="i">
+                <button class="btn btn-outline-danger" type="button" (click)="borrar(i)">Eliminar</button>
+            </div>
+            
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-sm-12">
+           <button class="btn btn-primary float-end" type="submit" >Guardar</button>
+        </div>
+    </div>
+</form>
+
+
+<span>Valid</span>
+<pre>{{miFormulario.valid}}</pre>
+
+<span>Value</span>
+<pre>{{miFormulario.value | json}}</pre>
+
+
+<span>Agregar Juego</span>
+<pre>{{nuevoFavorito.valid| json}}</pre>
+<br>
+<pre>{{nuevoFavorito.value| json}}</pre>
+
+<!-- <span>Persona</span>
+<pre>{{persona | json}}</pre> -->
