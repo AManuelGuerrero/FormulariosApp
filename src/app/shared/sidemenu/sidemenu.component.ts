@@ -52,6 +52,17 @@ export class SidemenuComponent implements OnInit {
     }
   ];
 
+  authMenu: MenuItem[] = [
+    {
+      texto: 'Login',
+      ruta: './auth/login'
+    },
+    {
+      texto: 'Registro',
+      ruta: './auth/registro'
+    }
+  ];
+
   menu: Menu[] = [
     {
       title: 'template',
@@ -61,6 +72,10 @@ export class SidemenuComponent implements OnInit {
       title: 'reactive',
       menuitems: this.reactiveMenu
     },
+    {
+      title: 'validaciones',
+      menuitems: this.authMenu
+    }
   ];
 
   constructor() { }
